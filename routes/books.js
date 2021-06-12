@@ -94,8 +94,12 @@ router.post('/books/:id', asyncHandler(async (req, res) => {
 router.post('/books/:id/delete', asyncHandler(async (req, res) => {
     const { id } = req.params;
     const book = await Book.findByPk(id);
-    console.log(book);
-    res.json(book);
+    if(book) {
+        await book.destroy();
+        res.redirect("/books");
+      } else {
+        res.sendStatus(404);
+      }
 }));
 
 

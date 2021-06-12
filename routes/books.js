@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models').Book;
+const {Op} = require('sequelize');
 
 /* Handler function to wrap each route. */
 function asyncHandler(cb){
@@ -21,7 +22,23 @@ router.get('/', asyncHandler(async (req, res) => {
 
 //Gets a list of all books
 router.get('/books', asyncHandler(async (req, res) => {
-    const books = await Book.findAll();
+    //Grabs search parameter and adds wildcards
+    const search = req.query.search ? `%${req.query.search}%` : '';
+    console.log(search)
+    let searchConditions={}
+    
+    if (search) {
+        searchConditions.where = {
+            [Op.or] : [
+                {title: {[Op.like] : search}},
+                {author: {[Op.like] : search}},
+                {genre: {[Op.like] : search}},
+                {year: {[Op.like] : search}},
+            ]}
+    }
+
+    
+    const books = await Book.findAll(searchConditions);
     res.render('index', {books})
 }));
 

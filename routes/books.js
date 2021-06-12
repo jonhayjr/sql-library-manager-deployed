@@ -27,8 +27,10 @@ router.get('/books', asyncHandler(async (req, res) => {
     //If there is no page number, 1 is used.
     const page = isNaN(parseInt(req.query.page)) ? 1 : parseInt(req.query.page);
 
-    //Grabs search parameter and adds wildcards
+    //Grabs search parameter
     const search = req.query.search ? `${req.query.search}` : '';
+
+    //Create searchConditions object
     let searchConditions={}
 
     if (search) {

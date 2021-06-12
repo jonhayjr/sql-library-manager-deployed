@@ -1,10 +1,25 @@
 {
   "name": "sql-library-manager",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "This is a SQL library app that was built using Node.js, Express.js, Sequelize and Pug.",
+  "keywords": [
+    "SQL",
+    "sequelize",
+    "sqlite",
+    "node",
+    "express",
+    "jon hay"
+  ],
+  "repository": "https://github.com/jonhayjr/sql-library-manager.git",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
+  "engines": {
+    "node": "14.6.0"
+  },
+  "author": "Jon Hay <jonhayjr@gmail.com> (https://www.jonhayjr.com)",
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

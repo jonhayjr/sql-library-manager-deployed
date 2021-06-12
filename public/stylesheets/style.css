@@ -100,3 +100,12 @@ input[type=text] {
   margin-bottom: 15px;
   margin-top: 15px;
 }
+
+.next,
+.prev {
+  display: inline-block;
+}
+
+.next {
+  margin-left: 10px;
+}

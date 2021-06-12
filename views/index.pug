@@ -5,7 +5,7 @@ block content
     p 
      a.button(href= '/books/new') Create New Book
     form(action='/books', method='get')
-        input(type='search' placeholder='search' name='search' value='' class='search' )
+        input(type='search' placeholder='Search' name='search' value='' class='search' )
         input(type='submit')
     table
         thead
@@ -23,8 +23,8 @@ block content
                 td= book.genre 
                 td= book.year
     if(prevPage)
-        p 
-            a.button(href= `/books/?page=${prevPage}&search=${search}`) Previous Page
+        p.prev
+            a.button(href= `/books/?page=${prevPage}&search=${search}`) Previous
     if(nextPage)
-        p
-            a.button(href= `/books/?page=${nextPage}&search=${search}`) Next Page
+        p.next
+            a.button(href= `/books/?page=${nextPage}&search=${search}`) Next

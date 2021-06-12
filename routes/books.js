@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models').Book;
 const {Op} = require('sequelize');
+//Default page size
+const pageSize = 5;
 
 /* Handler function to wrap each route. */
 function asyncHandler(cb){
@@ -22,24 +24,51 @@ router.get('/', asyncHandler(async (req, res) => {
 
 //Gets a list of all books
 router.get('/books', asyncHandler(async (req, res) => {
+    //If there is not page number, 1 is used.
+    const page = isNaN(parseInt(req.query.page)) ? 1 : parseInt(req.query.page);
     //Grabs search parameter and adds wildcards
-    const search = req.query.search ? `%${req.query.search}%` : '';
-    console.log(search)
+    const search = req.query.search ? `${req.query.search}` : '';
     let searchConditions={}
-    
+
     if (search) {
-        searchConditions.where = {
+        searchConditions = {
             [Op.or] : [
-                {title: {[Op.like] : search}},
-                {author: {[Op.like] : search}},
-                {genre: {[Op.like] : search}},
-                {year: {[Op.like] : search}},
+                {title: {[Op.like] : `%${search}%`}},
+                {author: {[Op.like] : `%${search}%`}},
+                {genre: {[Op.like] : `%${search}%`}},
+                {year: {[Op.like] : `%${search}%`}},
             ]}
     }
 
-    
-    const books = await Book.findAll(searchConditions);
-    res.render('index', {books})
+    //Get total number of books based on search conditions
+    const totalBooks = await Book.findAll({where: searchConditions});
+
+    //Get length of books array
+    const booksLength = totalBooks.length;
+
+    //Max pages is length of books array divided by page size rounded to the nearest integer.  If this value is less than 1, 0 is used.
+    const maxPage = booksLength / pageSize >= 1 ? Math.round(booksLength / pageSize): 1;
+
+    console.log(maxPage)
+
+    //If current page is greater than 1, then previous page is current page - 1.  In all other scenarios, this value is blank which hides previous button from page.
+    const prevPage = page > 1 ? page - 1 : '';
+
+    //If current page plus 1 is less than or equal to the max pages, then the next page is equal to the current page plus 1.  In all other scenarios, a blank is used which hides the next button
+    const nextPage = page + 1 <= maxPage ? page + 1: '';
+
+    //Sets limit variable equal to the pageSize variable
+    const limit = pageSize;
+
+    //const offset = page > maxPage ? (page * limit) : ((page - 1) * limit);
+
+    //Offset is equal to the current page - 1 * the page size or limit
+    const offset = ((page - 1) * limit);
+
+    //Gets books based on search conditions and limit and offset
+    const books = await Book.findAll({where: searchConditions, limit: limit, offset: offset});
+ 
+    res.render('index', {books, prevPage, nextPage, search})
 }));
 
 // Books post route

@@ -22,3 +22,9 @@ block content
                 td= book.author
                 td= book.genre 
                 td= book.year
+    if(prevPage)
+        p 
+            a.button(href= `/books/?page=${prevPage}&search=${search}`) Previous Page
+    if(nextPage)
+        p
+            a.button(href= `/books/?page=${nextPage}&search=${search}`) Next Page

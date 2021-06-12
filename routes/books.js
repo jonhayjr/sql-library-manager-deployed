@@ -24,8 +24,9 @@ router.get('/', asyncHandler(async (req, res) => {
 
 //Gets a list of all books
 router.get('/books', asyncHandler(async (req, res) => {
-    //If there is not page number, 1 is used.
+    //If there is no page number, 1 is used.
     const page = isNaN(parseInt(req.query.page)) ? 1 : parseInt(req.query.page);
+
     //Grabs search parameter and adds wildcards
     const search = req.query.search ? `${req.query.search}` : '';
     let searchConditions={}
@@ -71,19 +72,13 @@ router.get('/books', asyncHandler(async (req, res) => {
     res.render('index', {books, prevPage, nextPage, search})
 }));
 
-// Books post route
-router.post('/books', asyncHandler(async (req, res) => {
-    const books = await Book.findAll();
-    res.render('index', {books})
-}));
-
 
 //Shows create new book form
 router.get('/books/new', asyncHandler(async (req, res) => {
    res.render('new-book', { book: {}});
 }));
 
-//Posts a new book to the database
+//Inserts a new book into the database
 router.post('/books/new', asyncHandler(async (req, res) => {
    let book;
    try {
@@ -100,7 +95,7 @@ router.post('/books/new', asyncHandler(async (req, res) => {
   }
 }));
 
-//Show book detail form
+//Shows book detail form
 router.get('/books/:id', asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const book = await Book.findByPk(id);
@@ -114,7 +109,7 @@ router.get('/books/:id', asyncHandler(async (req, res, next) => {
     }
 }));
 
-//Update book info in the database
+//Updates book info in the database
 router.post('/books/:id', asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     let book;
@@ -153,12 +148,6 @@ router.post('/books/:id/delete', asyncHandler(async (req, res, next) => {
         next(err);
       }
 }));
-
-
-
-
-
-
 
 
 module.exports = router;

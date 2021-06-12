@@ -12,6 +12,7 @@
   ],
   "repository": "https://github.com/jonhayjr/sql-library-manager.git",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www"
   },

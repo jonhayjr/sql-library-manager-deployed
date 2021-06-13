@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   err.status = 404;
   err.message = 'Page Not Found';
   console.log(`404 error has occurred. (${err.status} - ${err.message})`);
-  res.render('page-not-found', {err});
+  res.render('page-not-found', {err, title: 'Page Not Found'});
 });
 
 // error handler
@@ -37,13 +37,13 @@ app.use((err, req, res, next) => {
   if (err.status === 404) {
     err.message = err.message || 'Page Not Found!';
     console.log(`404 error has occurred. (${err.status} - ${err.message})`);
-    res.status(err.status).render('page-not-found', {err});
+    res.status(err.status).render('page-not-found', {err, title: 'Page Not Found'});
   } else {
     console.log(err)
     err.message = err.message || 'Oops, something went wrong!';
     err.status = err.status || 500;
     console.log(`An error has occurred. (${err.status} - ${err.message})`);
-    res.status(err.status).render('error', {err});
+    res.status(err.status).render('error', {err, title: 'An Error Has Occurred'});
     }
 });
 

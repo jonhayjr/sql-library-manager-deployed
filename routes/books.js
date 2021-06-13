@@ -33,6 +33,7 @@ router.get('/books', asyncHandler(async (req, res) => {
     //Create searchConditions object
     let searchConditions={}
 
+    //If there is a search parameters, creates search condition that checks for title, author, genre, or year
     if (search) {
         searchConditions = {
             [Op.or] : [
@@ -52,7 +53,7 @@ router.get('/books', asyncHandler(async (req, res) => {
     //Max pages is length of books array divided by page size rounded to the nearest integer.  If this value is less than 1, 0 is used.
     const maxPage = booksLength / pageSize >= 1 ? Math.round(booksLength / pageSize): 1;
 
-    console.log(maxPage)
+    console.log(booksLength / pageSize)
 
     //If current page is greater than 1, then previous page is current page - 1.  In all other scenarios, this value is blank which hides previous button from page.
     const prevPage = page > 1 ? page - 1 : '';

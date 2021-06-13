@@ -62,8 +62,6 @@ router.get('/books', asyncHandler(async (req, res) => {
     //Sets limit variable equal to the pageSize variable
     const limit = pageSize;
 
-    //const offset = page > maxPage ? (page * limit) : ((page - 1) * limit);
-
     //Offset is equal to the current page - 1 * the page size or limit
     const offset = ((page - 1) * limit);
 

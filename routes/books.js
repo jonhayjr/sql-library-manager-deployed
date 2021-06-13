@@ -6,7 +6,7 @@ const {Op} = require('sequelize');
 const pageSize = 5;
 
 /* Handler function to wrap each route. */
-function asyncHandler(cb){
+const asyncHandler = (cb) => {
     return async(req, res, next) => {
       try {
         await cb(req, res, next)

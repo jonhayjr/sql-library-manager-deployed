@@ -76,6 +76,7 @@ label {
   min-width: 130px;
   display: inline-block;
   transition: 0.4s;
+  font-size: 20px;
 }
 
 input {

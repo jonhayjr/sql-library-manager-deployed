@@ -50,10 +50,8 @@ router.get('/books', asyncHandler(async (req, res) => {
     //Get length of books array
     const booksLength = totalBooks.length;
 
-    //Max pages is length of books array divided by page size rounded to the nearest integer.  If this value is less than 1, 0 is used.
-    const maxPage = booksLength / pageSize >= 1 ? Math.round(booksLength / pageSize): 1;
-
-    console.log(booksLength / pageSize)
+    //Max pages is length of books array divided by page size rounded to the next highest integer.  If this value is less than 1, 0 is used.
+    const maxPage = booksLength / pageSize >= 1 ? Math.ceil(booksLength / pageSize): 1;
 
     //If current page is greater than 1, then previous page is current page - 1.  In all other scenarios, this value is blank which hides previous button from page.
     const prevPage = page > 1 ? page - 1 : '';

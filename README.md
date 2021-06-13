@@ -1,5 +1,5 @@
 # SQL Library Manager
-This is a SQL library manager app that was built using Express, Pug, and Sequelize and uses a SQLite ORM.  A user can view all of the books in the library, view a specific book, add a new book, update a book or delete a book.
+This is a SQL library manager app that was built using Express, Pug, and Sequelize ORM and uses Sqlite to store data.  A user can view all of the books in the library, view a specific book, add a new book, update a book or delete a book.
 
 ## Getting Started
 

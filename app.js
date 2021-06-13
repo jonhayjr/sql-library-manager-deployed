@@ -19,7 +19,7 @@ app.use(cookieParser());
 //Static route setup
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Use Boooks Router
+//Use Books Router
 app.use('/', booksRouter);
 
 // catch 404 and forward to error handler

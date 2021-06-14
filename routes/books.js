@@ -28,7 +28,7 @@ router.get('/books', asyncHandler(async (req, res) => {
     const page = isNaN(parseInt(req.query.page)) ? 1 : parseInt(req.query.page);
 
     //Grabs search parameter
-    const search = req.query.search ? `${req.query.search}` : '';
+    const search = req.query.search ? req.query.search : '';
 
     //Create searchConditions object
     let searchConditions={}

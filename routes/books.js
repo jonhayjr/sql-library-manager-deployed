@@ -67,7 +67,7 @@ router.get('/books', asyncHandler(async (req, res) => {
 
     //Gets books based on search conditions and limit and offset
     const books = await Book.findAll({where: searchConditions, limit: limit, offset: offset});
- 
+    
     res.render('index', {books, prevPage, nextPage, search})
 }));
 

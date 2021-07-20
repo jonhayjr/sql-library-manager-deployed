@@ -1,0 +1,20 @@
+
+CREATE TABLE IF NOT EXISTS Books (id INTEGER AUTO_INCREMENT, title VARCHAR(255) NOT NULL, author VARCHAR(255) NOT NULL, genre VARCHAR(255), year INTEGER, createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, PRIMARY KEY (id));
+
+Insert into books (title, author, genre, year, createdAt, updatedAt)
+values 
+('The Hunger Games',	'Suzanne Collins',	'Fantasy',	2008, NOW(), NOW()),		
+('Catching Fire',	'Suzanne Collins',	'Fantasy',	2009, NOW(), NOW()),		
+('Mockingjay',	'Suzanne Collins',	'Fantasy',	2010, NOW(), NOW()),		
+('The Ballad of Songbirds and Snakes',	'Suzanne Collins',	'Fantasy',	2020, NOW(), NOW()),	
+('The Memory Police',	'Yoko Ogawa',	'Science Fiction',	1994, NOW(), NOW()),		
+('Nickel Boys',	'Colson Whitehead',	'Historical Fiction',	2019, NOW(), NOW()),		
+('The Book of Unknown Americans',	'Cristina Henriquez',	'Fiction',	2014, NOW(), NOW()),		
+('A Brief History of Time',	'Stephen Hawking',	'Non Fiction',	1988, NOW(), NOW()),		
+('The Universe in a Nutshell',	'Stephen Hawking',	'Non Fiction',	2001, NOW(), NOW()),		
+('Frankenstein',	'Mary Shelley',	'Horror',	1818, NOW(), NOW()),		
+('The Martian', 'Andy Weir',	'Science Fiction',	2014, NOW(), NOW()),		
+('Ready Player One',	'Ernest Cline',	'Science Fiction',	2011, NOW(), NOW()),		
+('Armada',	'Ernest Cline',	'Science Fiction',	2015, NOW(), NOW()),		
+('Pride and Prejudice',	'Jane Austen',	'Classic',	1813, NOW(), NOW()),		
+('Emma',	'Jane Austen',	'Classic',	1815, NOW(), NOW());		

@@ -5,3 +5,4 @@ This is a SQL library manager app that was built using Express, Pug, and Sequeli
 
 1. Run `npm install` to install the necessary dependencies.
 2. Run the command `npm start` to start the app and it will be open up in your browser with [`localhost:3000`](http://localhost:3000/).
+3. Click [`here`](https://sql-library-app-jh.herokuapp.com/) for a live preview.
